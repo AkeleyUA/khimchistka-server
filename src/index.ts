@@ -21,7 +21,7 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 app.use("/auth", authRouter);
 app.use("/users", checkTokenMiddleware, userRouter);
 app.use("/executor", checkTokenMiddleware, executorRounter);
