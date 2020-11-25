@@ -8,10 +8,12 @@ import { checkTokenMiddleware } from "./middlewares/Token";
 import { executorRounter } from "./routes/Executor/Executor";
 import { orderRounter } from "./routes/Order/Oreder";
 
-const result = dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  const result = dotenv.config();
 
-if (result.error) {
-  throw result.error;
+  if (result.error) {
+    throw result.error;
+  }
 }
 
 const port = process.env.PORT || 4000;

@@ -48,9 +48,11 @@ var Auth_1 = require("./routes/Auth/Auth");
 var Token_1 = require("./middlewares/Token");
 var Executor_1 = require("./routes/Executor/Executor");
 var Oreder_1 = require("./routes/Order/Oreder");
-var result = dotenv_1.default.config();
-if (result.error) {
-    throw result.error;
+if (process.env.NODE_ENV !== "production") {
+    var result = dotenv_1.default.config();
+    if (result.error) {
+        throw result.error;
+    }
 }
 var port = process.env.PORT || 4000;
 var app = express_1.default();

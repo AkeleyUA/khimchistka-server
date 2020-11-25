@@ -3,13 +3,13 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 // normalizeEmail
+if (process.env.NODE_ENV !== "production") {
+  const result = dotenv.config();
 
-const result = dotenv.config();
-
-if (result.error) {
-  throw result.error;
+  if (result.error) {
+    throw result.error;
+  }
 }
-
 export const checkTokenMiddleware = (
   req: Request,
   res: Response,

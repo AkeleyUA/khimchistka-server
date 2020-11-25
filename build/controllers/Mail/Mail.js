@@ -43,9 +43,11 @@ exports.MailController = void 0;
 var nodemailer_1 = require("nodemailer");
 var googleapis_1 = require("googleapis");
 var dotenv_1 = __importDefault(require("dotenv"));
-var result = dotenv_1.default.config();
-if (result.error) {
-    throw result.error;
+if (process.env.NODE_ENV !== "production") {
+    var result = dotenv_1.default.config();
+    if (result.error) {
+        throw result.error;
+    }
 }
 var oAuth2Client = new googleapis_1.google.auth.OAuth2(process.env.CLIENT_ID, process.env.CLIENT_SECRET, process.env.REDIRECT_ULR);
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });

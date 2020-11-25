@@ -3,10 +3,12 @@ import SMTPTransport from "nodemailer/lib/smtp-transport";
 import { google } from "googleapis";
 import dotenv from "dotenv";
 
-const result = dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  const result = dotenv.config();
 
-if (result.error) {
-  throw result.error;
+  if (result.error) {
+    throw result.error;
+  }
 }
 
 const oAuth2Client = new google.auth.OAuth2(
