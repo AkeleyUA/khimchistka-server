@@ -9,6 +9,14 @@ class User {
   public role!: Role;
   @prop({ required: true })
   public password!: string;
+  @prop({ type: Number })
+  public resetCode: number | undefined;
+  @prop({ type: Number, required: true })
+  public credits!: number;
+  @prop()
+  public firstName?: string;
+  @prop()
+  public secondName?: string;
 }
 
 export const UserModel = getModelForClass(User);

@@ -4,6 +4,9 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import { authRouter } from "./routes/Auth/Auth";
+import { checkTokenMiddleware } from "./middlewares/Token";
+import { executorRounter } from "./routes/Executor/Executor";
+import { orderRounter } from "./routes/Order/Oreder";
 
 const result = dotenv.config();
 
@@ -16,7 +19,9 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use("/auth", authRouter);
-app.use("/users", userRouter);
+app.use("/users", checkTokenMiddleware, userRouter);
+app.use("/executor", checkTokenMiddleware, executorRounter);
+app.use("/orders", checkTokenMiddleware, orderRounter);
 
 const start = async () => {
   await mongoose.connect(process.env.MONGO_PATH!, {
