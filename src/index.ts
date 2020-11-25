@@ -7,6 +7,7 @@ import { authRouter } from "./routes/Auth/Auth";
 import { checkTokenMiddleware } from "./middlewares/Token";
 import { executorRounter } from "./routes/Executor/Executor";
 import { orderRounter } from "./routes/Order/Oreder";
+import cors from "cors";
 
 if (process.env.NODE_ENV !== "production") {
   const result = dotenv.config();
@@ -20,6 +21,7 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use("/auth", authRouter);
 app.use("/users", checkTokenMiddleware, userRouter);
 app.use("/executor", checkTokenMiddleware, executorRounter);
