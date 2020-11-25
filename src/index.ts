@@ -24,7 +24,7 @@ app.use("/auth", authRouter);
 app.use("/users", checkTokenMiddleware, userRouter);
 app.use("/executor", checkTokenMiddleware, executorRounter);
 app.use("/orders", checkTokenMiddleware, orderRounter);
-app.get("**", (_, res) => {
+app.get("/", (_, res) => {
   res.status(200).json("Khimchistka");
 });
 
