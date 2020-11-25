@@ -61,7 +61,7 @@ app.use("/auth", Auth_1.authRouter);
 app.use("/users", Token_1.checkTokenMiddleware, User_1.userRouter);
 app.use("/executor", Token_1.checkTokenMiddleware, Executor_1.executorRounter);
 app.use("/orders", Token_1.checkTokenMiddleware, Oreder_1.orderRounter);
-app.get("**", function (_, res) {
+app.get("/", function (_, res) {
     res.status(200).json("Khimchistka");
 });
 var start = function () { return __awaiter(void 0, void 0, void 0, function () {
