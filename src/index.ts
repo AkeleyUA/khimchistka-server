@@ -22,6 +22,9 @@ app.use("/auth", authRouter);
 app.use("/users", checkTokenMiddleware, userRouter);
 app.use("/executor", checkTokenMiddleware, executorRounter);
 app.use("/orders", checkTokenMiddleware, orderRounter);
+app.get("**", (_, res) => {
+  res.status(200).json("Khimchistka");
+});
 
 const start = async () => {
   await mongoose.connect(process.env.MONGO_PATH!, {
@@ -29,11 +32,11 @@ const start = async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
+
   app.listen(port, (err?: Error) => {
     if (err) {
       console.error(err);
     }
-    console.log(`Started, port: ${port}`);
   });
 };
 
